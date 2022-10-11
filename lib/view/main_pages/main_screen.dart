@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gamestore/component/MyStyle.dart';
 import 'package:gamestore/component/my_color.dart';
 import 'package:gamestore/gen/assets.gen.dart';
 import 'package:gamestore/models/fake_model.dart';
@@ -255,7 +256,7 @@ class MainScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "تومان ${FakeModel().bestsellingLisView[index].price.seRagham()}",
-                                  style: MyComponent().offListView,
+                                  style: MyTextStyle().offListView,
                                 ),
                                 Text(
                                     "تومان ${FakeModel().bestsellingLisView[index].off.seRagham()}",
@@ -288,7 +289,7 @@ class MainScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Center(
                                     child: Text("50%",
-                                        style: MyComponent().offNumListView)),
+                                        style: MyTextStyle().offNumListView)),
                               )
                             ],
                           ),
