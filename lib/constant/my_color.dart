@@ -9,6 +9,7 @@ class MyColor{
   static const Color bestsellingColor=Color.fromARGB(255, 171, 241, 246);
   static const Color offColor=Color.fromARGB(255, 174, 241, 171);
   static const Color bkButtonNavColor=Color.fromARGB(255, 254, 255, 219);
+  static const Color bannerInformationColor=Color.fromARGB(255, 255, 230, 37);
 
 
 

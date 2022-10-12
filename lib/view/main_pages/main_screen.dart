@@ -1,19 +1,18 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gamestore/component/MyStyle.dart';
-import 'package:gamestore/component/my_color.dart';
+import 'package:gamestore/constant/my_color.dart';
 import 'package:gamestore/gen/assets.gen.dart';
 import 'package:gamestore/models/fake_model.dart';
-import 'package:gamestore/view/login_screen.dart';
 import 'package:gamestore/view/main_pages/search_screen.dart';
+import 'package:gamestore/view/product_pages/customer_single_product_screen.dart';
+import 'package:gamestore/view/product_pages/single_product_screen.dart';
 import 'package:get/get.dart';
 import 'package:page_indicator/page_indicator.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
-import '../../component/my_component.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -40,10 +39,14 @@ class MainScreen extends StatelessWidget {
                           onTap: () {
                             _key.currentState!.openDrawer();
                           },
-                          child: const Icon(
-                            Icons.menu,
-                            color: Colors.black,
-                            size: 30,
+                          child: const SizedBox(
+                            width: 80,
+                            height: 80,
+                            child: Icon(
+                              Icons.menu,
+                              color: Colors.black,
+                              size: 30,
+                            ),
                           ),
                         ),
                         Text(
@@ -54,10 +57,14 @@ class MainScreen extends StatelessWidget {
                           onTap: () {
                             Get.to( MySearchScreen());
                           },
-                          child: const Icon(
-                            Icons.search,
-                            size: 30,
-                            color: Colors.black,
+                          child: const SizedBox(
+                            width: 80,
+                            height: 80,
+                            child: Icon(
+                              Icons.search,
+                              size: 30,
+                              color: Colors.black,
+                            ),
                           ),
                         )
                       ]),
@@ -206,107 +213,112 @@ class MainScreen extends StatelessWidget {
           physics: const ScrollPhysics(parent: BouncingScrollPhysics()),
           scrollDirection: Axis.horizontal,
           itemCount: 3,
-          itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(14),
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: Get.width / 2.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: MyColor.offColor,
-                    ),
-                    child: Column(
-                      children: [
-                        //image
-                        Container(
-                          width: Get.width,
-                          height: Get.height / 8,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  FakeModel().bestsellingLisView[index].image,
+          itemBuilder: (context, index) => GestureDetector(
+            onTap: (){
+              Get.to(const CustomerSingleProductScreen());
+            },
+            child: Padding(
+                  padding: const EdgeInsets.all(14),
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      width: Get.width / 2.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: MyColor.offColor,
+                      ),
+                      child: Column(
+                        children: [
+                          //image
+                          Container(
+                            width: Get.width,
+                            height: Get.height / 8,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    FakeModel().bestsellingLisView[index].image,
+                                  ),
+                                  fit: BoxFit.fill,
                                 ),
-                                fit: BoxFit.fill,
-                              ),
-                              color: Colors.lightBlueAccent),
-                        ),
-                        //headText
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            FakeModel().bestsellingLisView[index].name,
-                            style: Theme.of(context).textTheme.headline4,
-                            overflow: TextOverflow.ellipsis,
+                                color: Colors.lightBlueAccent),
                           ),
-                        ),
-                        //PriceText
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              "قیمت",
-                              style: Theme.of(context).textTheme.subtitle1,
+                          //headText
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              FakeModel().bestsellingLisView[index].name,
+                              style: Theme.of(context).textTheme.headline4,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            //offText
-                            Column(
-                              children: [
-                                Text(
-                                  "تومان ${FakeModel().bestsellingLisView[index].price.seRagham()}",
-                                  style: MyTextStyle().offListView,
-                                ),
-                                Text(
-                                    "تومان ${FakeModel().bestsellingLisView[index].off.seRagham()}",
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        // titleText and Container for off
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10.0, right: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          ),
+                          //PriceText
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Text(
-                                "دوتا2",
+                                "قیمت",
                                 style: Theme.of(context).textTheme.subtitle1,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.right,
                               ),
-                              Container(
-                                height: 24,
-                                width: 36,
-                                decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Center(
-                                    child: Text("50%",
-                                        style: MyTextStyle().offNumListView)),
-                              )
+                              //offText
+                              Column(
+                                children: [
+                                  Text(
+                                    "تومان ${FakeModel().bestsellingLisView[index].price.seRagham()}",
+                                    style: MyTextStyle().offListView,
+                                  ),
+                                  Text(
+                                      "تومان ${FakeModel().bestsellingLisView[index].off.seRagham()}",
+                                      style:
+                                          Theme.of(context).textTheme.subtitle1),
+                                ],
+                              ),
                             ],
                           ),
-                        ),
-                        //bookmark
-                        const Padding(
-                          padding: EdgeInsets.only(top: 50, left: 102),
-                          child: Icon(
-                            Icons.bookmark_border_outlined,
-                            size: 40,
+                          const SizedBox(
+                            height: 5,
                           ),
-                        )
-                      ],
+                          // titleText and Container for off
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0, right: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "دوتا2",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.right,
+                                ),
+                                Container(
+                                  height: 24,
+                                  width: 36,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Center(
+                                      child: Text("50%",
+                                          style: MyTextStyle().offNumListView)),
+                                )
+                              ],
+                            ),
+                          ),
+                          //bookmark
+                          const Padding(
+                            padding: EdgeInsets.only(top: 50, left: 102),
+                            child: Icon(
+                              Icons.bookmark_border_outlined,
+                              size: 40,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              )),
+          )),
     );
   }
 
@@ -321,74 +333,79 @@ class MainScreen extends StatelessWidget {
           itemCount: 3,
           itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(14),
-                child: Material(
-                  color: Colors.transparent,
-                  elevation: 8,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: Get.width / 2.5,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: MyColor.bestsellingColor,
-                    ),
-                    child: Column(
-                      children: [
-                        //image
-                        Container(
-                          width: Get.width,
-                          height: Get.height / 8,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                  FakeModel().bestsellingLisView[index].image,
+                child: GestureDetector(
+                  onTap: (){
+                    Get.to(const SingleProductScreen());
+                  },
+                  child: Material(
+                    color: Colors.transparent,
+                    elevation: 8,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      width: Get.width / 2.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: MyColor.bestsellingColor,
+                      ),
+                      child: Column(
+                        children: [
+                          //image
+                          Container(
+                            width: Get.width,
+                            height: Get.height / 8,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                    FakeModel().bestsellingLisView[index].image,
+                                  ),
+                                  fit: BoxFit.fill,
                                 ),
-                                fit: BoxFit.fill,
+                                color: Colors.lightBlueAccent),
+                          ),
+                          //headText
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              FakeModel().bestsellingLisView[index].name,
+                              style: Theme.of(context).textTheme.headline4,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          //PriceText
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                "قیمت",
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
-                              color: Colors.lightBlueAccent),
-                        ),
-                        //headText
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            FakeModel().bestsellingLisView[index].name,
-                            style: Theme.of(context).textTheme.headline4,
-                            overflow: TextOverflow.ellipsis,
+                              Text(
+                                "تومان ${FakeModel().bestsellingLisView[index].price.seRagham()}",
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                            ],
                           ),
-                        ),
-                        //PriceText
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              "قیمت",
+                          // titleText
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0, left: 102),
+                            child: Text(
+                              "دوتا2",
                               style: Theme.of(context).textTheme.subtitle1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.right,
                             ),
-                            Text(
-                              "تومان ${FakeModel().bestsellingLisView[index].price.seRagham()}",
-                              style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          //bookmark
+                          const Padding(
+                            padding: EdgeInsets.only(top: 50, left: 102),
+                            child: Icon(
+                              Icons.bookmark_border_outlined,
+                              size: 40,
                             ),
-                          ],
-                        ),
-                        // titleText
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0, left: 102),
-                          child: Text(
-                            "دوتا2",
-                            style: Theme.of(context).textTheme.subtitle1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
-                        //bookmark
-                        const Padding(
-                          padding: EdgeInsets.only(top: 50, left: 102),
-                          child: Icon(
-                            Icons.bookmark_border_outlined,
-                            size: 40,
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamestore/component/my_color.dart';
-import 'package:gamestore/view/main_pages/search_screen.dart';
-import 'package:gamestore/view/single_product_screen.dart';
+
 import 'package:gamestore/view/splash_screen.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        //  fontFamily: "dana",
+
         fontFamily: "dana",
           textTheme: const TextTheme(
 
@@ -38,7 +36,8 @@ class MyApp extends StatelessWidget {
 
             headline6: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),
             headline5: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black),
-            headline4: TextStyle(fontSize: 16,fontWeight: FontWeight.w300,color: Colors.black,),
+            headline4: TextStyle(fontSize: 18,fontWeight: FontWeight.w300,color: Colors.black,),
+            headline3: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black),
 
 
             bodyText1: TextStyle(fontSize: 15,fontWeight: FontWeight.w300,),
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home: SingleProductScreen()
+      home:  MySplashScreen()
     );
   }
 }

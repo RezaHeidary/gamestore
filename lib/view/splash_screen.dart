@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:gamestore/component/my_color.dart';
+import 'package:gamestore/constant/my_color.dart';
 import 'package:gamestore/gen/assets.gen.dart';
 import 'package:gamestore/view/login_screen.dart';
-import 'package:gamestore/view/main_pages/main_screen.dart';
 import 'package:get/get.dart';
 
 class MySplashScreen extends StatelessWidget {

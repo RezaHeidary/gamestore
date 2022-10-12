@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gamestore/models/fake_model.dart';
 import 'package:get/get.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
-import '../../component/my_color.dart';
+import '../../constant/my_color.dart';
 
 class MySearchScreen extends StatelessWidget {
   MySearchScreen({Key? key}) : super(key: key);

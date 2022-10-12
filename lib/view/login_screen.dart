@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gamestore/component/my_color.dart';
+import 'package:gamestore/constant/my_color.dart';
 import 'package:gamestore/gen/assets.gen.dart';
 import 'package:get/get.dart';
 
